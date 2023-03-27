@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/days/days",
+    "pages/my/my",
+    "pages/img/img"
+  ],
+  "subPackages": [
+    {
+      "root": "subpkg",
+      "pages": [
+        "index/index"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "selectedColor": "#ff4722",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "my home",
+        "iconPath": "static/tabbar/KL.png",
+        "selectedIconPath": "static/tabbar/KLA.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "selectedIconPath": "static/tabbar/爱心A.png",
+        "text": "my girl",
+        "iconPath": "static/tabbar/爱心.png"
+      },
+      {
+        "pagePath": "pages/days/days",
+        "text": "my day",
+        "iconPath": "static/tabbar/book.png",
+        "selectedIconPath": "static/tabbar/booka.png"
+      },
+      {
+        "pagePath": "pages/img/img",
+        "text": "my img",
+        "iconPath": "static/tabbar/DOG.png",
+        "selectedIconPath": "static/tabbar/DOGS.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

@@ -1,0 +1,14 @@
+
+.container {
+  padding: 20px;
+}
+.uni-media-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.uni-media-list-img {
+  width: 48%; /* 更改为30% */
+  margin-bottom: 10px;
+}
+

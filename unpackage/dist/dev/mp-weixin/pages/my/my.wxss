@@ -1,0 +1,36 @@
+
+#developerView {
+  padding: 0 40rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20rpx;
+}
+.developerItemView {
+  padding-bottom: 30rpx;
+}
+.developerItemView>view:nth-child(1) {
+  font-size: 30rpx;
+  color: #87cefa;
+  padding-bottom: 20rpx;
+}
+.developerItemView>view:nth-child(2) {
+  font-size: 26rpx;
+  color: #00007f;
+}
+.copy-btn {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ff557f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+

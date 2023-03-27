@@ -1,0 +1,7 @@
+{
+  "name": "get_days",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

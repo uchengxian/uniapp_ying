@@ -1,0 +1,77 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+    {
+    	"path": "pages/days/days",
+    	"style": {
+    		"navigationBarTitleText": "uni-app"
+    	}
+    },		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},		{
+			"path": "pages/img/img",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		}
+	],
+  "tabBar": {
+    "selectedColor": "#ff4722",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "my home",
+        "iconPath": "static/tabbar/KL.png",
+        "selectedIconPath": "static/tabbar/KLA.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "selectedIconPath": "static/tabbar/爱心A.png",
+        "text": "my girl",
+        "iconPath": "static/tabbar/爱心.png"
+      },
+      {
+        "pagePath": "pages/days/days",
+        "text": "my day",
+        "iconPath": "static/tabbar/book.png",
+        "selectedIconPath": "static/tabbar/booka.png"
+      },
+      {
+        "pagePath": "pages/img/img",
+        "text": "my img",
+        "iconPath": "static/tabbar/DOG.png",
+        "selectedIconPath": "static/tabbar/DOGS.png"
+      }
+    ]
+  },
+  "subPackages": [
+  	{
+  		"root": "subpkg",
+  		"pages": [{
+                  "path" : "index/index",
+                  "style" :                                                                                    
+              {
+                  "navigationBarTitleText": "",
+                  "enablePullDownRefresh": false
+              }
+              }
+          ]
+  	}
+  ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+  
+}

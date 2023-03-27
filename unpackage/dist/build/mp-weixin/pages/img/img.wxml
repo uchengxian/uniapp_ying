@@ -1,0 +1,1 @@
+<view class="container"><view class="uni-media-list"><block wx:for="{{imageList}}" wx:for-item="list" wx:for-index="i" wx:key="i"><image class="uni-media-list-img" src="{{list.src}}"></image></block></view></view>
