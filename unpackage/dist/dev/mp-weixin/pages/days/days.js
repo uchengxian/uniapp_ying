@@ -198,7 +198,27 @@ var _default = {
       index: 0,
       newDiary: {},
       // 新日记
-      photoList: [] // 照片列表
+      photoList: [{
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }, {
+        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      }] // 照片列表
     };
   },
   onLoad: function onLoad() {
@@ -264,8 +284,11 @@ var _default = {
       return "".concat(year, "-").concat(month, "-").concat(day, " ").concat(hours, ":").concat(minutes, ":").concat(seconds);
     },
     // 编辑日记
-    editDiary: function editDiary(index) {
-      // TODO: 实现编辑日记的功能
+    editDiary: function editDiary(e) {
+      console.log(e);
+      uni.reLaunch({
+        url: "/pages/add_days/add_days?id=" + e
+      });
     },
     // 删除日记
     deleteDiary: function deleteDiary(i) {

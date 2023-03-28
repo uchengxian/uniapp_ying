@@ -21,7 +21,15 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
-		}
+		},
+    {
+          "path" : "pages/add_days/add_days",
+          "style" :                                                                                    
+      {
+          "navigationBarTitleText": ""
+      }
+      
+      }
 	],
   "tabBar": {
     "selectedColor": "#ff4722",
@@ -63,7 +71,7 @@
                   "enablePullDownRefresh": false
               }
               }
-          ]
+            ]
   	}
   ],
 	"globalStyle": {

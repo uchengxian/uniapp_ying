@@ -9946,7 +9946,7 @@ var k = "development" === "development",
         "192.168.137.1",
         "192.168.133.1",
         "192.168.64.1",
-        "192.168.52.29"
+        "192.168.137.52"
     ],
     "debugPort": 9000,
     "initialLaunchType": "local",
@@ -17142,6 +17142,11 @@ var _default = {
     "path": "pages/img/img",
     "style": {
       "navigationBarTitleText": "uni-app"
+    }
+  }, {
+    "path": "pages/add_days/add_days",
+    "style": {
+      "navigationBarTitleText": ""
     }
   }],
   "tabBar": {

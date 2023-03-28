@@ -47,10 +47,6 @@ export default {
             {url:"../../static/tabbar/swiper_dog2.png",id:5}
       ],
       todos: [
-        {
-    "time": 1679879424217,
-    "content": "我想你了"
-} 
       ], 
       id:0
     }

@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/days/days",
     "pages/my/my",
-    "pages/img/img"
+    "pages/img/img",
+    "pages/add_days/add_days"
   ],
   "subPackages": [
     {

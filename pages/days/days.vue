@@ -16,9 +16,9 @@
     <view class="diary-list">
       <view class="diary-item" v-for="(item, index) in list" :key="index">
         <view class="diary-item-title">{{item.title}}</view>
-        <view class="diary-item-content">内容：{{item.content}}</view>
+        <view class="diary-item-content diary-block">内容：{{item.content}}</view>
         <view class="diary-item-action">
-          <button @click="editDiary(index)">编辑</button>
+          <button @click="editDiary(item._id)">编辑</button>
           <button @click="deleteDiary(index)">删除</button>
           <view class="diary-item-time">发布时间：{{formatDate(item.time)}}</view>
         </view>
@@ -32,20 +32,11 @@
 export default {
   data() {
     return {
-      list:[{
-    "title": "就是计算机三级",
-    "content": "和叫我姐姐",
-    "time": 1679888291400
-},
-{
-    "title": "这种东西就可以",
-    "content": "这么齐",
-    "time": 1679888237865
-}],
+
+      list:[],
       index:0,
       newDiary: {}, // 新日记
-      photoList: [
-      {
+      photoList: [  {
         src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
       },
       {
@@ -137,8 +128,11 @@ export default {
           return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     },
     // 编辑日记
-    editDiary(index) {
-      // TODO: 实现编辑日记的功能
+    editDiary(e) {
+      console.log(e);
+      uni.reLaunch({
+        url: "/pages/add_days/add_days?id="+e
+      })
     },
     // 删除日记
     deleteDiary(i) {
@@ -232,6 +226,12 @@ color: #000000;
 font-size: 24rpx;
 margin-left: 10rpx;
 padding: 10rpx 20rpx;
+}
+.diary-block {
+  width: 300px;
+  height: 100rpx;
+  overflow: auto;
+  text-overflow: ellipsis;
 }
 .diary-item-action button:first-child {
 background-color:#F08080;

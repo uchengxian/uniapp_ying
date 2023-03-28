@@ -1,0 +1,45 @@
+
+.form.data-v-9443dbb4 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40rpx;
+}
+.form-item.data-v-9443dbb4 {
+  width: 90%;
+  margin-bottom: 30rpx;
+}
+.form-label.data-v-9443dbb4 {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+.form-input.data-v-9443dbb4,
+.form-textarea.data-v-9443dbb4 {
+  display: block;
+  width: 100%;
+  padding: 20rpx;
+  font-size: 28rpx;
+  border: 1px solid #ffaaff;
+  border-radius: 8rpx;
+  outline: none;
+}
+.form-textarea.data-v-9443dbb4 {
+  resize: none;
+  height: 450rpx;
+}
+.form-button.data-v-9443dbb4 {
+  padding: 20rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background-color: #007aff;
+  border: none;
+  border-radius: 8rpx;
+  outline: none;
+  cursor: pointer;
+}
+.form-button.data-v-9443dbb4:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+

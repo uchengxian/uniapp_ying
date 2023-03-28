@@ -1,28 +1,35 @@
 
+.btnsfabu{
+    background-color: #FFC0CB;
+    color: #010101;
+}
 .love-diary {
-  background-color: #ffc0cb;
+  background-color: #ffc0cb ;
   padding: 20rpx;
 }
 .diary-list {
   margin-bottom: 40rpx;
 }
 .diary-item {
-  background-color: #7fffd4;
+  background-color: #ffb3b3;
   border-radius: 10rpx;
-  box-shadow: 20rpx 20rpx 6rpx rgba(186, 230, 182, 1.0);
+  box-shadow: 20rpx 20rpx 6rpx rgba(240, 128, 128, 0.5);
   margin-bottom: 20rpx;
   padding: 20rpx;
 }
 .diary-item:nth-child(even) {
-  background-color: #90ee90;
+  background-color: #ffe6e6;
+  box-shadow: 20rpx 20rpx 6rpx rgba(230, 230, 250,0.5);
 }
 .diary-item-title {
+  color: #999;
   text-align: center;
   font-size: 28rpx;
   font-weight: bold;
   margin-bottom: 10rpx;
 }
 .diary-item-content {
+  color: #333;
 font-size: 24rpx;
 line-height: 1.5;
 margin-bottom: 10rpx;
@@ -39,21 +46,27 @@ justify-content: flex-end;
 margin-top: 10rpx;
 }
 .diary-item-action button {
-background-color: #fff;
+background-color: #FFD1DC;
 border: 1rpx solid #999;
 border-radius: 20rpx;
-color: #333;
+color: #000000;
 font-size: 24rpx;
 margin-left: 10rpx;
 padding: 10rpx 20rpx;
 }
+.diary-block {
+  width: 300px;
+  height: 100rpx;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
 .diary-item-action button:first-child {
-background-color: #ff6b6b;
-border-color: #ff6b6b;
+background-color:#F08080;
+border-color: #F08080;
 color: #fff;
 }
 .add-diary {
-background-color: #affeff;
+background-color: #ffe4e1 ;
 border-radius: 10rpx;
 box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
 margin-bottom: 20rpx;
@@ -63,6 +76,7 @@ padding: 20rpx;
 .add-diary textarea {
 border: none;
 border-radius: 10rpx;
+background-color: #E6C5C8;
 box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
 font-size: 24rpx;
 margin-bottom: 10rpx;
@@ -70,7 +84,7 @@ padding: 20rpx;
 width: 100%;
 }
 .add-diary button.add-btn {
-background-color: #ff6b6b;
+background-color: #FFE4E1;
 border: none;
 border-radius: 20rpx;
 color: #fff;
@@ -78,11 +92,12 @@ font-size: 24rpx;
 padding: 10rpx 20rpx;
 }
 .photo-list {
+  margin: 20rpx 0;
 display: flex;
 flex-wrap: wrap;
 }
 .photo-item {
-width: 33.333333%;
+width: 10.33%;
 padding: 10rpx;
 }
 .photo-item image {
