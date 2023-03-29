@@ -99,6 +99,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uniFilePicker: function () {
+      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 116))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
@@ -136,7 +159,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uniCloud, uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -165,32 +188,39 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      title: "",
+      dis_btn: true,
+      imageValue: [],
       show1: false,
       show2: false,
       show3: false,
       show4: false,
       show5: false,
-      gamew: [{
-        src: 'cloud://miximg-9gpgytum8b40fcfb.6d69-miximg-9gpgytum8b40fcfb-1317430923/gamew/gamew1mp4.mp4',
-        title: 'wangzhe'
-      }, {
-        src: 'cloud://miximg-9gpgytum8b40fcfb.6d69-miximg-9gpgytum8b40fcfb-1317430923/gamew/gamew2.mp4',
-        title: 'wangzhe'
-      }, {
-        src: 'cloud://miximg-9gpgytum8b40fcfb.6d69-miximg-9gpgytum8b40fcfb-1317430923/gamew/gamew3.mp4',
-        title: 'wangzhe'
-      }, {
-        src: 'cloud://miximg-9gpgytum8b40fcfb.6d69-miximg-9gpgytum8b40fcfb-1317430923/gamew/gamew4.mp4',
-        title: 'wangzhe'
-      }],
-      girls: [{}],
-      yuanshe: [{}]
+      gamew: [],
+      data_image: {},
+      img_url: []
     };
   },
   onLoad: function onLoad(options) {
+    //页面加载时的内容
     switch (options.id) {
       case '1':
         this.show1 = true;
@@ -209,10 +239,60 @@ var _default = {
         break;
       default:
     }
+    this.get_images();
   },
-  methods: {}
+  methods: {
+    get_images: function get_images() {
+      var _this = this;
+      uniCloud.callFunction({
+        name: "get_data_images",
+        data: {}
+      }).then(function (res) {
+        _this.img_url = res.result.data;
+      });
+    },
+    add_images: function add_images() {
+      var titles = this.title;
+      var detail = this.data_image;
+      if (titles === "") {
+        return "没输入东西";
+      } else if (detail === "") {
+        return "没输入";
+      }
+      console.log(detail);
+      uniCloud.callFunction({
+        name: "add_data_images",
+        data: {
+          detail: detail,
+          titles: titles
+        }
+      }).then(function (res) {
+        uni.reLaunch({
+          url: '../../subpkg/index/index?id=2'
+        });
+      });
+    },
+    select: function select(e) {
+      console.log('选择文件：', e);
+    },
+    // 获取上传进度
+    progress: function progress(e) {
+      console.log('上传进度：', e);
+    },
+    // 上传成功
+    success: function success(e) {
+      console.log('上传成功', e.tempFilePaths[0]);
+      this.data_image = e.tempFilePaths;
+      this.dis_btn = false;
+    },
+    // 上传失败
+    fail: function fail(e) {
+      console.log('上传失败：', e);
+    }
+  }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 27)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

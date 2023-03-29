@@ -6,21 +6,16 @@
       <textarea placeholder="内容不能为空" v-model="newDiary.content" width="50px" maxlength="-1"></textarea>
       <button @click="addDiary" class="btnsfabu">发布</button>
     </view>
-    <!-- 照片展示区块 -->
-    <view class="photo-list">
-      <view class="photo-item" v-for="(item, index) in photoList" :key="index">
-        <image :src="item.src" mode="heightFix" />
-      </view>
-    </view>
+    <uni-load-more status="loading" v-if="show" color="#ffaaff"></uni-load-more>
     <!-- 日记展示区块 -->
-    <view class="diary-list">
+    <view class="diary-list" v-else="show">
       <view class="diary-item" v-for="(item, index) in list" :key="index">
         <view class="diary-item-title">{{item.title}}</view>
         <view class="diary-item-content diary-block">内容：{{item.content}}</view>
         <view class="diary-item-action">
           <button @click="editDiary(item._id)">编辑</button>
           <button @click="deleteDiary(index)">删除</button>
-          <view class="diary-item-time">发布时间：{{formatDate(item.time)}}</view>
+          <uni-dateformat class="diary-item-time" :threshold="[60000,3600000]" :date="item.time"></uni-dateformat>
         </view>
       </view>
     </view>
@@ -30,9 +25,10 @@
 <script>
   let id;
 export default {
+  components: {},
   data() {
     return {
-
+      show:true,
       list:[],
       index:0,
       newDiary: {}, // 新日记
@@ -75,6 +71,7 @@ export default {
       data:{}
     }).then(res=>{
       this.list = res.result.data
+      this.show = false
     })
   },
   onReachBottom() {
@@ -115,17 +112,6 @@ export default {
           },500)
         })
       }
-    },
-    //日期格式化
-    formatDate(res) {
-          const date = new Date(res);
-          const year = date.getFullYear();
-          const month = ("0" + (date.getMonth() + 1)).slice(-2);
-          const day = ("0" + date.getDate()).slice(-2);
-          const hours = ("0" + date.getHours()).slice(-2);
-          const minutes = ("0" + date.getMinutes()).slice(-2);
-          const seconds = ("0" + date.getSeconds()).slice(-2);
-          return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     },
     // 编辑日记
     editDiary(e) {
@@ -254,7 +240,7 @@ box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
 font-size: 24rpx;
 margin-bottom: 10rpx;
 padding: 20rpx;
-width: 100%;
+width: 95%;
 }
 .add-diary button.add-btn {
 background-color: #FFE4E1;

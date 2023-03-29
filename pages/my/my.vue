@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-      <view id="developerView">
+      <view id="developerView" >
         <view class="column">
           <view class="developerItemView" v-for="(list,i) in obj" :key="i">
             <h4>{{list.title}}</h4>
@@ -14,7 +14,7 @@
           </view> 
         </view>
       </view>
-    </view>
+    </view> 
 </template>
 
 <script>

@@ -3,14 +3,14 @@
     "pages/home/home",
     "pages/days/days",
     "pages/my/my",
-    "pages/img/img",
     "pages/add_days/add_days"
   ],
   "subPackages": [
     {
       "root": "subpkg",
       "pages": [
-        "index/index"
+        "index/index",
+        "vedio_wang/vedio_wang"
       ]
     }
   ],
@@ -40,12 +40,6 @@
         "text": "my day",
         "iconPath": "static/tabbar/book.png",
         "selectedIconPath": "static/tabbar/booka.png"
-      },
-      {
-        "pagePath": "pages/img/img",
-        "text": "my img",
-        "iconPath": "static/tabbar/DOG.png",
-        "selectedIconPath": "static/tabbar/DOGS.png"
       }
     ]
   },

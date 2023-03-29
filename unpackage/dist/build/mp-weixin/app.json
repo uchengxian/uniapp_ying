@@ -3,13 +3,15 @@
     "pages/home/home",
     "pages/days/days",
     "pages/my/my",
-    "pages/img/img"
+    "pages/img/img",
+    "pages/add_days/add_days"
   ],
   "subPackages": [
     {
       "root": "subpkg",
       "pages": [
-        "index/index"
+        "index/index",
+        "vedio_wang/vedio_wang"
       ]
     }
   ],

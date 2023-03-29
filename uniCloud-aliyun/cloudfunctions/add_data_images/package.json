@@ -1,0 +1,7 @@
+{
+  "name": "add_data_images",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

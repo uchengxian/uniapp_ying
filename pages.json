@@ -16,12 +16,7 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
-		},		{
-			"path": "pages/img/img",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		},
+		},	
     {
           "path" : "pages/add_days/add_days",
           "style" :                                                                                    
@@ -51,12 +46,6 @@
         "text": "my day",
         "iconPath": "static/tabbar/book.png",
         "selectedIconPath": "static/tabbar/booka.png"
-      },
-      {
-        "pagePath": "pages/img/img",
-        "text": "my img",
-        "iconPath": "static/tabbar/DOG.png",
-        "selectedIconPath": "static/tabbar/DOGS.png"
       }
     ]
   },
@@ -71,6 +60,15 @@
                   "enablePullDownRefresh": false
               }
               }
+                ,{
+                    "path" : "vedio_wang/vedio_wang",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
             ]
   	}
   ],

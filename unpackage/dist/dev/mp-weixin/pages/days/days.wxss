@@ -81,7 +81,7 @@ box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
 font-size: 24rpx;
 margin-bottom: 10rpx;
 padding: 20rpx;
-width: 100%;
+width: 95%;
 }
 .add-diary button.add-btn {
 background-color: #FFE4E1;

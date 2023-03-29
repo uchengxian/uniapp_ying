@@ -8,13 +8,14 @@
       </navigator>
     </swiper-item>
       </swiper>
+      <uni-load-more status="loading" v-show="!show" color="#55ff7f"></uni-load-more>
       <!-- 添加列表清单 -->
       <view class="header">
         <input class="input" placeholder="请输入待办事项" v-model="inputValue" @confirm="addTodo" />
         <button class="add-btn" @click="addTodo">添加</button>
       </view>
-      <view class="todo-list">
-        <view class="todo-item" v-for="(item, index) in todos" :key="index">
+      <view class="todo-list" v-show="show">
+        <view class="todo-item" v-for="(item, index) in todos" :key="index"  >
           <!-- 左边的勾勾 -->
           <view class="todo-item-left" >
             <checkbox/>
@@ -35,6 +36,7 @@
 export default {
   data() {
     return {
+      show:false,
       inputValue: '',
       //获取索引
       index:0,
@@ -64,10 +66,9 @@ export default {
         name:"get_list",
         data:{
           //刷新几个数据 一开始刷新几条数据
-          skip:this.todos.length
+          skip:this.todos.length,
         }
       }).then(res=>{
-        console.log(res);
         //把新数据和久数据拼接起来 触底就刷新五条记录
         let oldlist = this.todos
         let newlist = [...oldlist,...res.result.data ]
@@ -81,6 +82,7 @@ getlist(){
     data:{}
   }).then(res=>{
     this.todos = res.result.data
+    this.show = true
   })
 },
   goToPage(id) {

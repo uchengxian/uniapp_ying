@@ -99,6 +99,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uniLoadMore: function () {
+      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 99))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
@@ -175,12 +198,14 @@ var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/
 //
 //
 //
+//
 
 //定义id来获取点击的哪个元素
 var id;
 var _default = {
   data: function data() {
     return {
+      show: false,
       inputValue: '',
       //获取索引
       index: 0,
@@ -222,7 +247,6 @@ var _default = {
           skip: this.todos.length
         }
       }).then(function (res) {
-        console.log(res);
         //把新数据和久数据拼接起来 触底就刷新五条记录
         var oldlist = _this.todos;
         var newlist = [].concat((0, _toConsumableArray2.default)(oldlist), (0, _toConsumableArray2.default)(res.result.data));
@@ -237,6 +261,7 @@ var _default = {
         data: {}
       }).then(function (res) {
         _this2.todos = res.result.data;
+        _this2.show = true;
       });
     },
     goToPage: function goToPage(id) {

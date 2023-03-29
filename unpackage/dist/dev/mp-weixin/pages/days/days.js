@@ -99,26 +99,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uniLoadMore: function () {
+      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 99))
+    },
+    uniDateformat: function () {
+      return Promise.all(/*! import() | uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.vue */ 110))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.list, function (item, index) {
-    var $orig = _vm.__get_orig(item)
-    var m0 = _vm.formatDate(item.time)
-    return {
-      $orig: $orig,
-      m0: m0,
-    }
-  })
-  _vm.$mp.data = Object.assign(
-    {},
-    {
-      $root: {
-        l0: l0,
-      },
-    }
-  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -184,16 +194,13 @@ var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/
 //
 //
 //
-//
-//
-//
-//
-//
 
 var id;
 var _default = {
+  components: {},
   data: function data() {
     return {
+      show: true,
       list: [],
       index: 0,
       newDiary: {},
@@ -228,6 +235,7 @@ var _default = {
       data: {}
     }).then(function (res) {
       _this.list = res.result.data;
+      _this.show = false;
     });
   },
   onReachBottom: function onReachBottom() {
@@ -271,17 +279,6 @@ var _default = {
           }, 500);
         });
       }
-    },
-    //日期格式化
-    formatDate: function formatDate(res) {
-      var date = new Date(res);
-      var year = date.getFullYear();
-      var month = ("0" + (date.getMonth() + 1)).slice(-2);
-      var day = ("0" + date.getDate()).slice(-2);
-      var hours = ("0" + date.getHours()).slice(-2);
-      var minutes = ("0" + date.getMinutes()).slice(-2);
-      var seconds = ("0" + date.getSeconds()).slice(-2);
-      return "".concat(year, "-").concat(month, "-").concat(day, " ").concat(hours, ":").concat(minutes, ":").concat(seconds);
     },
     // 编辑日记
     editDiary: function editDiary(e) {
