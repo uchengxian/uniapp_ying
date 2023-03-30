@@ -65,6 +65,8 @@ export default {
       uniCloud.callFunction({
         name:"get_list",
         data:{
+          //传递要读取的数据表
+          collectionName:"TodoList",
           //刷新几个数据 一开始刷新几条数据
           skip:this.todos.length,
         }
@@ -79,7 +81,9 @@ export default {
 getlist(){
   uniCloud.callFunction({
     name:"get_list",
-    data:{}
+    data:{
+      collectionName:"TodoList"
+    }
   }).then(res=>{
     this.todos = res.result.data
     this.show = true
@@ -90,17 +94,6 @@ getlist(){
        url: '../../subpkg/index/index?id='+ id
      })
    },
-    showModal(index) {
-      uni.showModal({
-        title: '提示',
-        content: '真的要删除嘛-,-',
-        success: (res) => {
-          if (res.confirm) {
-            this.deleteTodo(index);
-          }
-        }
-      });
-    },
     addTodo(e) {
       if (this.inputValue.trim() === '') {
         return
@@ -125,7 +118,7 @@ getlist(){
     },
 deleteTodo(i){
   id = this.todos[i]._id
-  console.log(id);
+  console.log(id);  
   uni.showModal({
     content:"确定删除吗",
     success: (res) => {
@@ -142,7 +135,7 @@ deleteTodo(i){
       uniCloud.callFunction({
         //调用删除数据库云函数
         name:"remove_list",
-        data:{id}
+        data:{id,table:"TodoList"}
       }).then(res=>{
        uni.showToast({
          //图标删除

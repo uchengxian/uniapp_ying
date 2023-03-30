@@ -1,4 +1,10 @@
 
+.remove_class{
+    background-color: #ffaaff;
+    width: 100px;
+    height: 45px;
+    margin-left: 75%;
+}
 video{
 	width: 750rpx;
 }
@@ -6,24 +12,24 @@ input[type="text"] {
   padding: 10px;
   border: 2px solid #ffaaff;
   border-radius: 5px;
-  color: bisque;
+  color: blueviolet;
   font-size: 16px;
   outline: none;
 }
-input[type="text"]:focus {
-  border-color: #007bff;
-}
 .images_box{
+  margin-top: 20px;
   text-align: center;
-  height: 40vh;
+  border: 2px solid red;
+  height: 45vh;
 }
 .images_title {
     font-size: 18px;
+    color: aquamarine;
     font-weight: bold;
     margin-bottom: 10px;
 }
 .image_style {
-    width: 90%;
+    width: 95%;
     margin-left: 2.5%;
     border-radius: 10px;
 }

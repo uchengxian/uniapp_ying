@@ -6,9 +6,9 @@
       <textarea placeholder="内容不能为空" v-model="newDiary.content" width="50px" maxlength="-1"></textarea>
       <button @click="addDiary" class="btnsfabu">发布</button>
     </view>
-    <uni-load-more status="loading" v-if="show" color="#ffaaff"></uni-load-more>
+    <uni-load-more status="loading" v-show="!show" color="#ffaaff"></uni-load-more>
     <!-- 日记展示区块 -->
-    <view class="diary-list" v-else="show">
+    <view class="diary-list" v-show="show">
       <view class="diary-item" v-for="(item, index) in list" :key="index">
         <view class="diary-item-title">{{item.title}}</view>
         <view class="diary-item-content diary-block">内容：{{item.content}}</view>
@@ -28,51 +28,15 @@ export default {
   components: {},
   data() {
     return {
-      show:true,
+      show:false,
       list:[],
       index:0,
       newDiary: {}, // 新日记
-      photoList: [  {
-        src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      },
-      {
-        src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      },
-      {
-        src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      },
-      {
-        src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      },
-      {
-        src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      },
-      {
-        src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      },
-      {
-        src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      },
-     
-     {
-       src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-     },
-     {
-       src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-     },
-     {
-       src:"https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-     } ], // 照片列表
+      photoList: [ ], // 照片列表
     };
   },
   onLoad() {
-    uniCloud.callFunction({
-      name:"get_days",
-      data:{}
-    }).then(res=>{
-      this.list = res.result.data
-      this.show = false
-    })
+this.getlist()
   },
   onReachBottom() {
     this.get_data()
@@ -81,8 +45,10 @@ export default {
     //拼接数据
     get_data(){
       uniCloud.callFunction({
-        name:"get_days",
+        name:"get_list",
         data:{
+          //传递要读取的数据表
+          collectionName:"days_book",
           //刷新几个数据 一开始刷新几条数据
           skip:this.list.length
         }
@@ -91,6 +57,17 @@ export default {
         let oldlist = this.list
         let newlist = [...oldlist,...res.result.data ]
         this.list = newlist
+      })
+    },
+    getlist(){
+      uniCloud.callFunction({
+        name:"get_list",
+        data:{
+          collectionName:"days_book"
+        }
+      }).then(res=>{
+        this.list = res.result.data
+        this.show = true
       })
     },
     // 新增日记
@@ -138,8 +115,8 @@ export default {
     deledays(){
       uniCloud.callFunction({
         //删除函数
-        name:"remove_days",
-        data:{id}
+        name:"remove_list",
+        data:{id,table:"days_book"}
       }).then(res=>{
         uni.showToast({
           title:"删除成功了"

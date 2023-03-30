@@ -1,12 +1,48 @@
 <template>
   <view>
-   <view v-show="show1">
-     <video class="video" id="demoVideo" controls v-for="(list,i) in gamew" :key="i"
-     :play-btn-position="center"
-      :src="list.src">
-     	</video>
+   <view v-if="show1">
+     <input type="text" v-model="title"  placeholder="上传一点视频" maxlength="10">
+     <uni-file-picker 
+     	v-model="imageValue" 
+     	fileMediatype="video" 
+      limit="1"
+     	mode="grid" 
+     	@select="select" 
+     	@progress="progress" 
+     	@success="success" 
+     	@fail="fail" 
+     />
+     <button type="default" @click="add_videos" :disabled="dis_btn" >点击发布</button>
+     <view v-for="(list,i) in video_url" :key="i" class="images_box">
+       <view class="remove_class">
+         <uni-icons type="closeempty" size="40" class="show_remove" @click="remove1(index,i)"></uni-icons>
+       </view>
+       <text class="images_title">{{list.title}}</text>
+      <video :src="list.url" class="image_style" controls></video>
+     </view>
    </view>
-   <view v-show="show2">
+   <view v-else-if="show2">
+     <input type="text" v-model="title"  placeholder="要上传一张图片这里写他的标题" maxlength="10">
+     <uni-file-picker 
+     	v-model="imageValue" 
+     	fileMediatype="image" 
+      limit="1"
+     	mode="grid" 
+     	@select="select" 
+     	@progress="progress" 
+     	@success="success" 
+     	@fail="fail" 
+     />
+     <button type="default" @click="add_images" :disabled="dis_btn" >点击发布</button>
+     <view v-for="(list,i) in img_url" :key="i" class="images_box">
+       <view class="remove_class">
+         <uni-icons type="closeempty" size="40" class="show_remove" @click="remove2(index,i)"></uni-icons>
+       </view>
+       <text class="images_title">{{list.title}}</text>
+      <image :src="list.url" mode="aspectFit" class="image_style"></image>
+     </view>
+   </view>
+   <view v-else-if="show3">
      <input type="text" v-model="title"  placeholder="要上传一张图片这里写他的标题" maxlength="10">
      <uni-file-picker 
      	v-model="imageValue" 
@@ -21,22 +57,35 @@
      <button type="default" @click="add_images" :disabled="dis_btn" >点击发布</button>
      <view v-for="(list,i) in img_url" :key="i" class="images_box">
        <text class="images_title">{{list.title}}</text>
-      <image :src="list.url" mode="aspectFill" class="image_style"></image>
+      <image :src="list.url" mode="aspectFit" class="image_style"></image>
      </view>
    </view>
-   <view v-show="show3">
-
+   <view v-else-if="show4">
+     <input type="text" v-model="title"  placeholder="要上传一张图片这里写他的标题" maxlength="10">
+     <uni-file-picker 
+     	v-model="imageValue" 
+     	fileMediatype="image" 
+      limit="1"
+     	mode="grid" 
+     	@select="select" 
+     	@progress="progress" 
+     	@success="success" 
+     	@fail="fail" 
+     />
+     <button type="default" @click="add_images" :disabled="dis_btn" >点击发布</button>
+     <view v-for="(list,i) in img_url" :key="i" class="images_box">
+       <text class="images_title">{{list.title}}</text>
+      <image :src="list.url" mode="aspectFit" class="image_style"></image>
+     </view>
    </view>
-   <view v-show="show4">
-     第四个内容
-   </view>
-   <view v-show="show5">
+   <view v-else>
      第5个内容
    </view>
   </view>
 </template>
 
 <script>
+  let id ;
   export default {
   data() {
     return {
@@ -48,9 +97,12 @@
       show3:false,
       show4:false,
       show5:false ,
+      index:0,
       gamew:[],
       data_image:{},
-      img_url:[]
+      img_url:[],
+      video_url:[],
+      data_video:{}
     }
   },
   onLoad(options) {
@@ -73,17 +125,153 @@
               break;
             default:
           }
+  
    this.get_images()
+   this.get_video()
+    },
+    onReachBottom() {
+      this.get_data()
+      this.get_videos()
     },
     methods: {
+      remove1(index,i){
+        id = this.video_url[i]._id
+        uni.showModal({
+          content:"确定删除吗",
+          success: (res) => {
+            if(res.confirm)
+            {
+              this.video_delete()
+            }
+          }
+        })
+      },
+      remove2(index,i){
+        id = this.img_url[i]._id
+        uni.showModal({
+          content:"确定删除吗",
+          success: (res) => {
+            if(res.confirm)
+            {
+              this.img_delete()
+            }
+          }
+        })
+      },
+      img_delete(){
+        uniCloud.callFunction({
+          //调用删除数据库云函数
+          name:"remove_list",
+          data:{id,table:"list_images"}
+        }).then(res=>{
+         uni.showToast({
+           //图标删除
+           title:"删除成功"
+         })
+         //删除完毕跳转
+         setTimeout(()=>{
+           uni.reLaunch({
+            url: '../../subpkg/index/index?id=2'
+           },500)
+         })
+        })
+      },
+      video_delete(){
+        uniCloud.callFunction({
+          //调用删除数据库云函数
+          name:"remove_list",
+          data:{id,table:"list_video"}
+        }).then(res=>{
+         uni.showToast({
+           //图标删除
+           title:"删除成功"
+         })
+         //删除完毕跳转
+         setTimeout(()=>{
+           uni.reLaunch({
+            url: '../../subpkg/index/index?id=1'
+           },500)
+         })
+        })
+      },
+      get_video(){
+        uniCloud.callFunction({
+          name:"get_list",
+          data:{
+            collectionName:"list_video"
+          }
+        }).then(res=>{
+          this.video_url = res.result.data
+        })
+      },
+      get_videos(){
+        uniCloud.callFunction({
+          name:"get_list",
+          data:{
+            //传递要读取的数据表
+            collectionName:"list_video",
+            //刷新几个数据 一开始刷新几条数据
+            skip:this.video_url.length
+          }
+        }).then(res=>{
+          //把新数据和久数据拼接起来 触底就刷新五条记录
+          let oldlist = this.video_url
+          this.video_url = [...oldlist,...res.result.data ]
+        })
+      },
+      add_videos(){
+        let titles = this.title
+        let detail = this.data_video
+        if(titles==="")
+        {
+          return "没输入东西"
+        }
+        else if(detail==="")
+        {
+          return "没输入"
+        }
+        uniCloud.callFunction({
+          name:"add_data_images",
+          data:{
+            table:"list_video",
+            detail,
+            titles
+            }
+        }).then(res=>{
+           uni.reLaunch({
+                  url: '../../subpkg/index/index?id=1'
+                });
+        })
+      },
+      //照片加载刷新
+      get_data(){
+        uniCloud.callFunction({
+          name:"get_list",
+          data:{
+            //传递要读取的数据表
+            collectionName:"list_images",
+            //刷新几个数据 一开始刷新几条数据
+            skip:this.img_url.length
+          }
+        }).then(res=>{
+          //把新数据和久数据拼接起来 触底就刷新五条记录
+          let oldlist = this.img_url
+          let newlist = [...oldlist,...res.result.data ]
+          this.img_url = newlist
+        })
+      },
+      //获取照片
       get_images(){
         uniCloud.callFunction({
-          name:"get_data_images",
-          data:{}
+          name:"get_list",
+          data:{
+            collectionName:"list_images"
+          }
         }).then(res=>{
           this.img_url = res.result.data
         })
       },
+      ///添加图片和文字
       add_images(){
         let titles = this.title
         let detail = this.data_image
@@ -95,10 +283,12 @@
         {
           return "没输入"
         }
-        console.log(detail)
         uniCloud.callFunction({
           name:"add_data_images",
-          data:{detail,titles}
+          data:{
+            detail,
+            table:"list_images",
+            titles}
         }).then(res=>{
            uni.reLaunch({
                   url: '../../subpkg/index/index?id=2'
@@ -115,6 +305,7 @@
       			// 上传成功
       			success(e){
       				console.log('上传成功',e.tempFilePaths[0])
+              this.data_video = e.tempFilePaths
               this.data_image = e.tempFilePaths
               this.dis_btn = false
       			},
@@ -127,6 +318,12 @@
 </script>
 
 <style>
+  .remove_class{
+    background-color: #ffaaff;
+    width: 100px;
+    height: 45px;
+    margin-left: 75%;
+  }
 video{
 	width: 750rpx;
 }
@@ -134,27 +331,25 @@ input[type="text"] {
   padding: 10px;
   border: 2px solid #ffaaff;
   border-radius: 5px;
-  color: bisque;
+  color: blueviolet;
   font-size: 16px;
   outline: none;
 }
-
-input[type="text"]:focus {
-  border-color: #007bff;
-}
-
 .images_box{
+  margin-top: 20px;
   text-align: center;
-  height: 40vh;
+  border: 2px solid red;
+  height: 45vh;
 }
   .images_title {
     font-size: 18px;
+    color: aquamarine;
     font-weight: bold;
     margin-bottom: 10px;
   }
   
   .image_style {
-    width: 90%;
+    width: 95%;
     margin-left: 2.5%;
     border-radius: 10px;
   }

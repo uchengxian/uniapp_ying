@@ -102,7 +102,7 @@ var components
 try {
   components = {
     uniLoadMore: function () {
-      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 99))
+      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 91))
     },
   }
 } catch (e) {
@@ -243,6 +243,8 @@ var _default = {
       uniCloud.callFunction({
         name: "get_list",
         data: {
+          //传递要读取的数据表
+          collectionName: "TodoList",
           //刷新几个数据 一开始刷新几条数据
           skip: this.todos.length
         }
@@ -258,7 +260,9 @@ var _default = {
       var _this2 = this;
       uniCloud.callFunction({
         name: "get_list",
-        data: {}
+        data: {
+          collectionName: "TodoList"
+        }
       }).then(function (res) {
         _this2.todos = res.result.data;
         _this2.show = true;
@@ -267,18 +271,6 @@ var _default = {
     goToPage: function goToPage(id) {
       uni.navigateTo({
         url: '../../subpkg/index/index?id=' + id
-      });
-    },
-    showModal: function showModal(index) {
-      var _this3 = this;
-      uni.showModal({
-        title: '提示',
-        content: '真的要删除嘛-,-',
-        success: function success(res) {
-          if (res.confirm) {
-            _this3.deleteTodo(index);
-          }
-        }
       });
     },
     addTodo: function addTodo(e) {
@@ -304,7 +296,7 @@ var _default = {
       });
     },
     deleteTodo: function deleteTodo(i) {
-      var _this4 = this;
+      var _this3 = this;
       id = this.todos[i]._id;
       console.log(id);
       uni.showModal({
@@ -312,7 +304,7 @@ var _default = {
         success: function success(res) {
           //删除确认confirm为真  调用函数
           if (res.confirm) {
-            _this4.art_remove1();
+            _this3.art_remove1();
           }
         }
       });
@@ -322,7 +314,8 @@ var _default = {
         //调用删除数据库云函数
         name: "remove_list",
         data: {
-          id: id
+          id: id,
+          table: "TodoList"
         }
       }).then(function (res) {
         uni.showToast({

@@ -102,10 +102,10 @@ var components
 try {
   components = {
     uniLoadMore: function () {
-      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 99))
+      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 91))
     },
     uniDateformat: function () {
-      return Promise.all(/*! import() | uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.vue */ 110))
+      return Promise.all(/*! import() | uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.vue */ 102))
     },
   }
 } catch (e) {
@@ -200,43 +200,16 @@ var _default = {
   components: {},
   data: function data() {
     return {
-      show: true,
+      show: false,
       list: [],
       index: 0,
       newDiary: {},
       // 新日记
-      photoList: [{
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }, {
-        src: "https://images.unsplash.com/photo-1553600842-dc436cacbab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8QWxwZXMlMjBQZW5pbmVzJTJDJTIwU3dpdHplcmxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-      }] // 照片列表
+      photoList: [] // 照片列表
     };
   },
   onLoad: function onLoad() {
-    var _this = this;
-    uniCloud.callFunction({
-      name: "get_days",
-      data: {}
-    }).then(function (res) {
-      _this.list = res.result.data;
-      _this.show = false;
-    });
+    this.getlist();
   },
   onReachBottom: function onReachBottom() {
     this.get_data();
@@ -244,18 +217,32 @@ var _default = {
   methods: {
     //拼接数据
     get_data: function get_data() {
-      var _this2 = this;
+      var _this = this;
       uniCloud.callFunction({
-        name: "get_days",
+        name: "get_list",
         data: {
+          //传递要读取的数据表
+          collectionName: "days_book",
           //刷新几个数据 一开始刷新几条数据
           skip: this.list.length
         }
       }).then(function (res) {
         //把新数据和久数据拼接起来 触底就刷新五条记录
-        var oldlist = _this2.list;
+        var oldlist = _this.list;
         var newlist = [].concat((0, _toConsumableArray2.default)(oldlist), (0, _toConsumableArray2.default)(res.result.data));
-        _this2.list = newlist;
+        _this.list = newlist;
+      });
+    },
+    getlist: function getlist() {
+      var _this2 = this;
+      uniCloud.callFunction({
+        name: "get_list",
+        data: {
+          collectionName: "days_book"
+        }
+      }).then(function (res) {
+        _this2.list = res.result.data;
+        _this2.show = true;
       });
     },
     // 新增日记
@@ -305,9 +292,10 @@ var _default = {
     deledays: function deledays() {
       uniCloud.callFunction({
         //删除函数
-        name: "remove_days",
+        name: "remove_list",
         data: {
-          id: id
+          id: id,
+          table: "days_book"
         }
       }).then(function (res) {
         uni.showToast({
