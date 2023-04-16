@@ -1,9 +1,15 @@
 
 .remove_class{
-    background-color: #ffaaff;
+    background-color: #ffffff;
     width: 100px;
-    height: 45px;
+    height: 20px; 
     margin-left: 75%;
+}
+input::-webkit-input-placeholder {
+    color: red;
+}
+input::placeholder {
+    color: red;
 }
 video{
 	width: 750rpx;
@@ -19,8 +25,7 @@ input[type="text"] {
 .images_box{
   margin-top: 20px;
   text-align: center;
-  border: 2px solid red;
-  height: 45vh;
+  border: 2px solid #ffaaff;
 }
 .images_title {
     font-size: 18px;

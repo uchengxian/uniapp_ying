@@ -3,37 +3,37 @@
 		{
 			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页"
 			}
 		},
     {
     	"path": "pages/days/days",
     	"style": {
-    		"navigationBarTitleText": "uni-app"
+    		"navigationBarTitleText": "我们的日记"
     	}
     },		{
 			"path": "pages/my/my",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "我们的联系"
 			}
 		},	
     {
           "path" : "pages/add_days/add_days",
           "style" :                                                                                    
       {
-          "navigationBarTitleText": ""
+          "navigationBarTitleText": "上传一些图片呀"
       }
       
       }
 	],
   "tabBar": {
-    "selectedColor": "#ff4722",
+    "selectedColor": "#ffaaff",
     "list": [
       {
         "pagePath": "pages/home/home",
         "text": "my home",
-        "iconPath": "static/tabbar/KL.png",
-        "selectedIconPath": "static/tabbar/KLA.png"
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/homes.png"
       },
       {
         "pagePath": "pages/my/my",
@@ -60,23 +60,14 @@
                   "enablePullDownRefresh": false
               }
               }
-                ,{
-                    "path" : "vedio_wang/vedio_wang",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
             ]
   	}
   ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#DB7093",
+		"backgroundColor": "#DB7093"
 	},
 	"uniIdRouter": {}
   

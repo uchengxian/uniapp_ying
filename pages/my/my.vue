@@ -22,16 +22,14 @@ export default {
   data() {
     return {
       obj:[
-        {name:"chengxian",title:"name"},
-          {name:"yiyang",title:"shcool"},
-            {name:"132***",title:"phone"},
-            {name:"jt974423@",title:"email"}
+        {name:"tao",title:"name"},
+            {name:"13203645330",title:"phone"},
+            {name:"2677661670@qq.com",title:"email"},
       ],
       obj2:[
         {name:"ying",title:"name"},
-          {name:"cnagzhou",title:"shcool"},
-            {name:"199***",title:"phone"},
-            {name:"199@163",title:"email"}
+            {name:"15713384868",title:"phone"},
+            {name:"2072301208@qq.com",title:"email"}
       ]
     }
   },

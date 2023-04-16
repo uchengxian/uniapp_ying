@@ -102,10 +102,10 @@ var components
 try {
   components = {
     uniFilePicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 108))
+      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 102))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 141))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 111))
     },
   }
 } catch (e) {
@@ -162,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {
+/* WEBPACK VAR INJECTION */(function(wx, uniCloud, uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
@@ -170,6 +170,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -269,12 +275,14 @@ var _default = {
       show3: false,
       show4: false,
       show5: false,
-      index: 0,
-      gamew: [],
       data_image: {},
       img_url: [],
       video_url: [],
-      data_video: {}
+      data_video: {},
+      gamed_url: [],
+      data_gamed: {},
+      gamew_url: [],
+      data_gamew: {}
     };
   },
   onLoad: function onLoad(options) {
@@ -297,45 +305,129 @@ var _default = {
         break;
       default:
     }
-    this.get_images();
-    this.get_video();
+    this.get_media("images");
+    this.get_media("video");
+    this.get_media("gamed");
+    this.get_media("gamew");
   },
   onReachBottom: function onReachBottom() {
-    this.get_data();
-    this.get_videos();
+    this.get_datas("list_video");
+    this.get_datas("list_images");
   },
   methods: {
-    remove1: function remove1(index, i) {
+    //预览
+    clickImg2: function clickImg2(index, i) {
+      wx.previewImage({
+        urls: [this.img_url[i].url],
+        //需要预览的图片http链接列表，多张的时候，url直接写在后面就行了
+        current: '',
+        // 当前显示图片的http链接，默认是第一个
+        success: function success(res) {},
+        fail: function fail(res) {},
+        complete: function complete(res) {}
+      });
+    },
+    clickImg3: function clickImg3(index, i) {
+      wx.previewImage({
+        urls: [this.gamed_url[i].url],
+        //需要预览的图片http链接列表，多张的时候，url直接写在后面就行了
+        current: '',
+        // 当前显示图片的http链接，默认是第一个
+        success: function success(res) {},
+        fail: function fail(res) {},
+        complete: function complete(res) {}
+      });
+    },
+    clickImg4: function clickImg4(index, i) {
+      wx.previewImage({
+        urls: [this.gamew_url[i].url],
+        //需要预览的图片http链接列表，多张的时候，url直接写在后面就行了
+        current: '',
+        // 当前显示图片的http链接，默认是第一个
+        success: function success(res) {},
+        fail: function fail(res) {},
+        complete: function complete(res) {}
+      });
+    },
+    //获取数据 传递名字响应对应的数据
+    get_media: function get_media(type) {
       var _this = this;
-      id = this.video_url[i]._id;
+      uniCloud.callFunction({
+        name: "get_list",
+        data: {
+          collectionName: "list_".concat(type)
+        }
+      }).then(function (res) {
+        if (type === 'images') {
+          _this.img_url = res.result.data;
+        } else if (type === 'video') {
+          _this.video_url = res.result.data;
+        } else if (type === 'gamed') {
+          _this.gamed_url = res.result.data;
+        } else if (type === 'gamew') {
+          _this.gamew_url = res.result.data;
+        }
+      });
+    },
+    //按点击删除事件
+    remove1: function remove1(index, i) {
+      var _this2 = this;
+      var id = this.video_url[i]._id;
       uni.showModal({
         content: "确定删除吗",
         success: function success(res) {
           if (res.confirm) {
-            _this.video_delete();
+            _this2.deleteItem('list_video', id, '../../subpkg/index/index?id=1');
           }
         }
       });
     },
     remove2: function remove2(index, i) {
-      var _this2 = this;
-      id = this.img_url[i]._id;
+      var _this3 = this;
+      var id = this.img_url[i]._id;
       uni.showModal({
         content: "确定删除吗",
         success: function success(res) {
           if (res.confirm) {
-            _this2.img_delete();
+            _this3.deleteItem('list_images', id, '../../subpkg/index/index?id=2');
           }
         }
       });
     },
-    img_delete: function img_delete() {
+    remove3: function remove3(index, i) {
+      var _this4 = this;
+      var id = this.gamed_url[i]._id;
+      uni.showModal({
+        content: "确定删除吗",
+        success: function success(res) {
+          if (res.confirm) {
+            console.log(id);
+            _this4.deleteItem('list_gamed', id, '../../subpkg/index/index?id=3');
+          }
+        }
+      });
+    },
+    remove4: function remove4(index, i) {
+      var _this5 = this;
+      var id = this.gamew_url[i]._id;
+      uni.showModal({
+        content: "确定删除吗",
+        success: function success(res) {
+          if (res.confirm) {
+            console.log(id);
+            _this5.deleteItem('list_gamew', id, '../../subpkg/index/index?id=4');
+          }
+        }
+      });
+    },
+    //删除函数给函数参数和id和地址删除
+    deleteItem: function deleteItem(table, id, url) {
       uniCloud.callFunction({
         //调用删除数据库云函数
         name: "remove_list",
         data: {
           id: id,
-          table: "list_images"
+          table: table
         }
       }).then(function (res) {
         uni.showToast({
@@ -345,45 +437,13 @@ var _default = {
         //删除完毕跳转
         setTimeout(function () {
           uni.reLaunch({
-            url: '../../subpkg/index/index?id=2'
+            url: url
           }, 500);
         });
-      });
-    },
-    video_delete: function video_delete() {
-      uniCloud.callFunction({
-        //调用删除数据库云函数
-        name: "remove_list",
-        data: {
-          id: id,
-          table: "list_video"
-        }
-      }).then(function (res) {
-        uni.showToast({
-          //图标删除
-          title: "删除成功"
-        });
-        //删除完毕跳转
-        setTimeout(function () {
-          uni.reLaunch({
-            url: '../../subpkg/index/index?id=1'
-          }, 500);
-        });
-      });
-    },
-    get_video: function get_video() {
-      var _this3 = this;
-      uniCloud.callFunction({
-        name: "get_list",
-        data: {
-          collectionName: "list_video"
-        }
-      }).then(function (res) {
-        _this3.video_url = res.result.data;
       });
     },
     get_videos: function get_videos() {
-      var _this4 = this;
+      var _this6 = this;
       uniCloud.callFunction({
         name: "get_list",
         data: {
@@ -394,8 +454,8 @@ var _default = {
         }
       }).then(function (res) {
         //把新数据和久数据拼接起来 触底就刷新五条记录
-        var oldlist = _this4.video_url;
-        _this4.video_url = [].concat((0, _toConsumableArray2.default)(oldlist), (0, _toConsumableArray2.default)(res.result.data));
+        var oldlist = _this6.video_url;
+        _this6.video_url = [].concat((0, _toConsumableArray2.default)(oldlist), (0, _toConsumableArray2.default)(res.result.data));
       });
     },
     add_videos: function add_videos() {
@@ -421,7 +481,7 @@ var _default = {
     },
     //照片加载刷新
     get_data: function get_data() {
-      var _this5 = this;
+      var _this7 = this;
       uniCloud.callFunction({
         name: "get_list",
         data: {
@@ -432,21 +492,30 @@ var _default = {
         }
       }).then(function (res) {
         //把新数据和久数据拼接起来 触底就刷新五条记录
-        var oldlist = _this5.img_url;
+        var oldlist = _this7.img_url;
         var newlist = [].concat((0, _toConsumableArray2.default)(oldlist), (0, _toConsumableArray2.default)(res.result.data));
-        _this5.img_url = newlist;
+        _this7.img_url = newlist;
       });
     },
-    //获取照片
-    get_images: function get_images() {
-      var _this6 = this;
+    get_datas: function get_datas(type) {
+      var _this8 = this;
+      var collectionName = type === 'video' ? 'list_video' : 'list_images';
+      var data = type === 'video' ? this.video_url : this.img_url;
+      var skip = data.length;
       uniCloud.callFunction({
-        name: "get_list",
+        name: 'get_list',
         data: {
-          collectionName: "list_images"
+          collectionName: collectionName,
+          skip: skip
         }
       }).then(function (res) {
-        _this6.img_url = res.result.data;
+        var oldlist = data;
+        var newlist = [].concat((0, _toConsumableArray2.default)(oldlist), (0, _toConsumableArray2.default)(res.result.data));
+        if (type === 'video') {
+          _this8.video_url = newlist;
+        } else {
+          _this8.img_url = newlist;
+        }
       });
     },
     ///添加图片和文字
@@ -471,6 +540,48 @@ var _default = {
         });
       });
     },
+    add_gamed: function add_gamed() {
+      var titles = this.title;
+      var detail = this.data_gamed;
+      if (titles === "") {
+        return "没输入东西";
+      } else if (detail === "") {
+        return "没输入";
+      }
+      uniCloud.callFunction({
+        name: "add_data_images",
+        data: {
+          detail: detail,
+          table: "list_gamed",
+          titles: titles
+        }
+      }).then(function (res) {
+        uni.reLaunch({
+          url: '../../subpkg/index/index?id=3'
+        });
+      });
+    },
+    add_gamew: function add_gamew() {
+      var titles = this.title;
+      var detail = this.data_gamew;
+      if (titles === "") {
+        return "没输入东西";
+      } else if (detail === "") {
+        return "没输入";
+      }
+      uniCloud.callFunction({
+        name: "add_data_images",
+        data: {
+          detail: detail,
+          table: "list_gamew",
+          titles: titles
+        }
+      }).then(function (res) {
+        uni.reLaunch({
+          url: '../../subpkg/index/index?id=4'
+        });
+      });
+    },
     select: function select(e) {
       console.log('选择文件：', e);
     },
@@ -483,6 +594,8 @@ var _default = {
       console.log('上传成功', e.tempFilePaths[0]);
       this.data_video = e.tempFilePaths;
       this.data_image = e.tempFilePaths;
+      this.data_gamed = e.tempFilePaths;
+      this.data_gamew = e.tempFilePaths;
       this.dis_btn = false;
     },
     // 上传失败
@@ -492,7 +605,7 @@ var _default = {
   }
 };
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 27)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 27)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

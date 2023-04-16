@@ -9,25 +9,24 @@
     {
       "root": "subpkg",
       "pages": [
-        "index/index",
-        "vedio_wang/vedio_wang"
+        "index/index"
       ]
     }
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarBackgroundColor": "#DB7093",
+    "backgroundColor": "#DB7093"
   },
   "tabBar": {
-    "selectedColor": "#ff4722",
+    "selectedColor": "#ffaaff",
     "list": [
       {
         "pagePath": "pages/home/home",
         "text": "my home",
-        "iconPath": "static/tabbar/KL.png",
-        "selectedIconPath": "static/tabbar/KLA.png"
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/homes.png"
       },
       {
         "pagePath": "pages/my/my",

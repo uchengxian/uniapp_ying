@@ -10,11 +10,12 @@
       </swiper>
       <uni-load-more status="loading" v-show="!show" color="#55ff7f"></uni-load-more>
       <!-- 添加列表清单 -->
-      <view class="header">
-        <input class="input" placeholder="请输入待办事项" v-model="inputValue" @confirm="addTodo" />
-        <button class="add-btn" @click="addTodo">添加</button>
-      </view>
+
       <view class="todo-list" v-show="show">
+        <view class="header">
+          <input class="input" placeholder="请输入待办事项" v-model="inputValue" @confirm="addTodo" />
+          <button class="add-btn" @click="addTodo">添加</button>
+        </view>
         <view class="todo-item" v-for="(item, index) in todos" :key="index"  >
           <!-- 左边的勾勾 -->
           <view class="todo-item-left" >

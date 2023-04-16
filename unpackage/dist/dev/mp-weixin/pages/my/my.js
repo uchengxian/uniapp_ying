@@ -165,29 +165,23 @@ var _default = {
   data: function data() {
     return {
       obj: [{
-        name: "chengxian",
+        name: "tao",
         title: "name"
       }, {
-        name: "yiyang",
-        title: "shcool"
-      }, {
-        name: "132***",
+        name: "13203645330",
         title: "phone"
       }, {
-        name: "jt974423@",
+        name: "2677661670@qq.com",
         title: "email"
       }],
       obj2: [{
         name: "ying",
         title: "name"
       }, {
-        name: "cnagzhou",
-        title: "shcool"
-      }, {
-        name: "199***",
+        name: "15713384868",
         title: "phone"
       }, {
-        name: "199@163",
+        name: "2072301208@qq.com",
         title: "email"
       }]
     };
