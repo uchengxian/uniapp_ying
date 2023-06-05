@@ -9944,9 +9944,7 @@ var k = "development" === "development",
     "address": [
         "127.0.0.1",
         "192.168.137.1",
-        "192.168.133.1",
-        "192.168.64.1",
-        "192.168.137.113"
+        "192.168.230.29"
     ],
     "debugPort": 9000,
     "initialLaunchType": "local",
@@ -9957,7 +9955,7 @@ var k = "development" === "development",
     ]
 }
 ),
-  E = S([{"provider":"aliyun","spaceName":"agirls","spaceId":"mp-61f376a7-5158-43dc-85f9-4989bbe9918f","clientSecret":"62duBdP55oSzRKtq19LgIA==","endpoint":"https://api.next.bspapp.com"}]) || [],
+  E = S([{"provider":"aliyun","spaceName":"agirls","spaceId":"mp-83e39421-aef0-4357-8023-03b8a9493346","clientSecret":"ZcqSqIFAfQZakcBZEIrVLA==","endpoint":"https://api.next.bspapp.com"}]) || [],
   O = true;
 var x = "";
 try {

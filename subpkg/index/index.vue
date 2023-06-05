@@ -1,7 +1,7 @@
 <template>
   <view>
    <view v-if="show1">
-     <input type="text" v-model="title"  placeholder="上传一些视频哦宝" maxlength="10">
+     <input type="text" v-model="title"  placeholder="上传一些视频" maxlength="10">
      <uni-file-picker 
      	v-model="imageValue" 
      	fileMediatype="video" 
@@ -22,7 +22,7 @@
      </view>
    </view>
    <view v-else-if="show2">
-     <input type="text" v-model="title"  placeholder="上传一些图片哦宝" maxlength="10">
+     <input type="text" v-model="title"  placeholder="上传一些图片" maxlength="10">
      <uni-file-picker 
      	v-model="imageValue" 
      	fileMediatype="image" 
@@ -43,7 +43,7 @@
      </view>
    </view>
    <view v-else-if="show3">
-     <input type="text" v-model="title"  placeholder="可以上传一些蛋仔哦宝" maxlength="10" >
+     <input type="text" v-model="title"  placeholder="可以上传一些蛋仔" maxlength="10" >
      <uni-file-picker 
      	v-model="imageValue" 
      	fileMediatype="image" 
@@ -64,7 +64,7 @@
      </view>
    </view>
    <view v-else-if="show4">
-     <input type="text" v-model="title"  placeholder="可以上传一些王者哦宝" maxlength="10">
+     <input type="text" v-model="title"  placeholder="可以上传一些王者" maxlength="10">
      <uni-file-picker 
      	v-model="imageValue" 
      	fileMediatype="image" 

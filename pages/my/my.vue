@@ -27,9 +27,9 @@ export default {
             {name:"2677661670@qq.com",title:"email"},
       ],
       obj2:[
-        {name:"ying",title:"name"},
-            {name:"15713384868",title:"phone"},
-            {name:"2072301208@qq.com",title:"email"}
+        {name:"yyy",title:"name"},
+            {name:"123",title:"phone"},
+            {name:"123@gmail.com",title:"email"}
       ]
     }
   },

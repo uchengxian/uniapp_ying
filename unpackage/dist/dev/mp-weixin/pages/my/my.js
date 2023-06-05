@@ -175,13 +175,13 @@ var _default = {
         title: "email"
       }],
       obj2: [{
-        name: "ying",
+        name: "yyy",
         title: "name"
       }, {
-        name: "15713384868",
+        name: "123",
         title: "phone"
       }, {
-        name: "2072301208@qq.com",
+        name: "123@gmail.com",
         title: "email"
       }]
     };
